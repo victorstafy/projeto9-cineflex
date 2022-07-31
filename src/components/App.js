@@ -14,33 +14,8 @@ export default function App () {
         setScreen(scren_n);
     }
 
-    // function CurrentScreen({ switch_screen }) {
-    //     if (screen===0){
-    //         return (
-    //             <Screen0 switch_screen={switch_screen}/>
-    //         );
-    //     }
-    //     else if (screen===1){
-    //         return (
-    //             <Screen1 switch_screen={switch_screen}/>
-    //         );
-    //     }
-    //     else if (screen===2){
-    //         return (
-    //             <Screen2 switch_screen={switch_screen}/>
-    //         );
-    //     }
-    //     else if (screen===3){
-    //         return (
-    //             <Screen3 switch_screen={switch_screen}/>
-    //         );
-    //     }
-        
-    //   }
-
     return(
         <>
-            {/* { CurrentScreen(switch_screen)  } */}
             {
             <BrowserRouter>
                 <Navbar/>
