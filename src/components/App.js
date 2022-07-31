@@ -7,12 +7,14 @@ import Screen3 from './Screen3';
 import Navbar from './Navbar';
 
 export default function App () {
-    //Deve começar com false
-    const [screen, setScreen] = useState(1);
+    const [screen, setScreen] = useState('/');
+    const [movie_id, setMovie_id] = useState('');
+    const [sessao_id, setSessao_id] = useState('');
+    const [assentos_id, setAssentos_id] = useState('');
 
-    function switch_screen(scren_n) {
-        setScreen(scren_n);
-    }
+    const api_root_adress='https://mock-api.driven.com.br/api/v7/cineflex/movies';
+    let api_movie_adress=`https://mock-api.driven.com.br/api/v7/cineflex/movies/${movie_id}/showtimes`;
+    let api_section_adress=`https://mock-api.driven.com.br/api/v7/cineflex/showtimes/${sessao_id}/seats`;
 
     return(
         <>
@@ -20,10 +22,21 @@ export default function App () {
             <BrowserRouter>
                 <Navbar/>
                 <Routes>
-                    <Route path="/" element={<Screen0 />}></Route>
-                    <Route path="/sessoes" element={<Screen1 />}></Route>
-                    <Route path="/assentos" element={<Screen2 />}></Route>
-                    <Route path="/sucesso" element={<Screen3 />}></Route>
+                    <Route path="/" element={<Screen0 screen={screen} setScreen={setScreen} 
+                    movie_id={movie_id} setMovie_id={setMovie_id} api_root_adress={api_root_adress}/>}></Route>
+
+                    <Route path="/sessoes:filmeId" element={<Screen1 screen={screen} setScreen={setScreen} 
+                    movie_id={movie_id} setMovie_id={setMovie_id}  sessao_id={sessao_id} 
+                    setSessao_id={setSessao_id} api_movie_adress={api_movie_adress}/>}></Route>
+
+                    <Route path="/assentos:sessaoId" element={<Screen2 screen={screen} setScreen={setScreen} 
+                    movie_id={movie_id} setMovie_id={setMovie_id}  sessao_id={sessao_id} 
+                    setSessao_id={setSessao_id} api_section_adress={api_section_adress}/>}></Route>
+
+                    <Route path="/sucesso" element={<Screen3 screen={screen} setScreen={setScreen} 
+                    movie_id={movie_id} setMovie_id={setMovie_id}  sessao_id={sessao_id} 
+                    setSessao_id={setSessao_id}  assentos_id={assentos_id} setAssentos_id={setAssentos_id} />}></Route>
+
                 </Routes>
             </BrowserRouter>
             }
