@@ -96,6 +96,7 @@ body {
   justify-content: left;
   flex-wrap: wrap;
   padding: 0px 16px 0px 16px;
+  /* margin-top: 11px; */
   overflow-y: scroll; /* comentar pra tirar */
 }
 
@@ -224,17 +225,17 @@ body {
   justify-content: space-between;
 }
 
-.seat_option{
+.seat_option_type{
   width: 100%;
-  display:block;
+  display:flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  flex-direction: column;
   
   font-weight: 400;
   font-size: 13px;
   line-height: 15px;
-  display: flex;
   align-items: center;
   letter-spacing: -0.013em;
 
@@ -245,6 +246,7 @@ body {
   display: flex;
   align-items: center;
   text-align: center;
+  justify-content: center;
   width: 26px;
   height: 26px;
   background: var(--cor-disponivel);
@@ -256,12 +258,14 @@ body {
   line-height: 13px;
   letter-spacing: 0.04em;
   color: var(--cor-letra-assentos);
+  margin: 8px 3px 8px 3px;
 }
 
 .occupied{
   display: flex;
   align-items: center;
   text-align: center;
+  justify-content: center;
   width: 26px;
   height: 26px;
   background: var(--cor-indisponivel);
@@ -273,12 +277,14 @@ body {
   line-height: 13px;
   letter-spacing: 0.04em;
   color: var(--cor-letra-assentos);
+  margin: 8px 3px 8px 3px;
 }
 
 .selected{
   display: flex;
   align-items: center;
   text-align: center;
+  justify-content: center;
   width: 26px;
   height: 26px;
   background: var(--cor-selecionado);
@@ -290,6 +296,7 @@ body {
   line-height: 13px;
   letter-spacing: 0.04em;
   color: var(--cor-letra-assentos);
+  margin: 8px 3px 8px 3px;
 }
 
 .content_screen_3{

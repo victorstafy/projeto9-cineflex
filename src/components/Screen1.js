@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-
+import Footer from './Footer';
 
 
 function Section({ weekday,date,showtimes ,setSessao_id}) {
@@ -34,20 +34,6 @@ function Button({ hour, page_link, section_id, setSessao_id}) {
     );
 }
 
-function Footer({img_url,movie_title}){
-    console.log(img_url)
-    return (
-    <div className="footer">
-        <div className="footer_img_back">
-            <img src={img_url}/>
-        </div>
-        <div className="footer_title">
-            {movie_title}
-        </div>
-    </div>
-    )
-}
-
 export default function Screen1({setSessao_id}) {
 
     const [section_days_info, setSection_days_info] = useState([]);
@@ -65,7 +51,6 @@ export default function Screen1({setSessao_id}) {
         });
       }, []);
 
-    // {console.log(setSection_info.posterURL)}
     return(
         <>
             <div className="top_title">
@@ -84,6 +69,7 @@ export default function Screen1({setSessao_id}) {
             <Footer
             img_url={section_info.posterURL}
             movie_title={section_info.title}
+            movie_time={''}
             />
         </>
 
