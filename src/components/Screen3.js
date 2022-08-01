@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import {Link} from 'react-router-dom'
 
-export default function Screen3({request_info,setRequest_info}) {
+export default function Screen3({request_info}) {
 
-    let selected_seats=[...request_info.seats_id];
-    console.log(selected_seats)
+    let selected_seats=[...request_info.seats_n];
 
     return(
         <>

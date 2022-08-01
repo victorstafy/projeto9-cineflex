@@ -23,7 +23,7 @@ export default function App () {
 
                     <Route path="/assentos/:section_id" element={<Screen2 setRequest_info={setRequest_info} />}></Route>
 
-                    <Route path="/sucesso" element={<Screen3 request_info={request_info} setRequest_info={setRequest_info}/>}></Route>
+                    <Route path="/sucesso" element={<Screen3 request_info={request_info} />}></Route>
 
                 </Routes>
             </BrowserRouter>

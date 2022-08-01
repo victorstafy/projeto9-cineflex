@@ -156,7 +156,6 @@ body {
   justify-content: left;
   text-align: center;
   padding: 14px 10px 14px 10px;
-  margin-bottom: 0px;
   width: 375px;
   height: 117px;
   background: var(--cor-rorape) ;
@@ -177,8 +176,9 @@ body {
   line-height: 30px;
   display: flex;
   text-align: left;
+  justify-content: left;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   margin-left: 14px;
   margin-top: 25px;
 }
@@ -375,7 +375,7 @@ body {
 
 .final_text{
   width: 319px;
-  height: 110px;
+  /* height: 110px; */
   display:flex;
   flex-direction: column;
   align-items: center;

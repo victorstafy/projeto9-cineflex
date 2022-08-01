@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom'
 import axios from 'axios';
 
-function Image({ url, name, id, setMovie_id }) {
+function Image({ url, id, setMovie_id }) {
     return (
       <div className="content_screen_0_cont">
         <Link to={`/sessoes/${id}`}>
@@ -35,7 +35,6 @@ export default function Screen0({setMovie_id}) {
                 {images.map((value) => (
                 <Image
                     url={value.posterURL}
-                    name={value.title}
                     id={value.id}
                     setMovie_id={setMovie_id}
                 />

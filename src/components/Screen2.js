@@ -4,13 +4,13 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Footer from './Footer';
 
-function Seat({isAvailable,isSelected,seat_n,select_seat,index}){
+function Seat({isAvailable,isSelected,seat_n,seat_id,select_seat,index}){
     return (
         <>
-        {isAvailable ? ( isSelected ? (<div className="selected" onClick={()=>{ select_seat(seat_n,index) }}>
+        {isAvailable ? ( isSelected ? (<div className="selected" onClick={()=>{ select_seat(seat_n,seat_id,index) }}>
         {('0' + seat_n).slice(-2)}</div> ): 
 
-        (<div className="available" onClick={()=>{ select_seat(seat_n,index) }}>
+        (<div className="available" onClick={()=>{ select_seat(seat_n,seat_id,index) }}>
         {('0' + seat_n).slice(-2)}</div> ) ):  
 
         (<div className="occupied" onClick={()=>{alert('Esse assento não está disponível')}}>
@@ -24,6 +24,7 @@ export default function Screen2({setRequest_info}) {
     const [all_data, setAll_data] = useState([]);
     const [seats_data, setSeats_data] = useState([]);
     const [seat_selected, setSeat_selected] = useState(Array(100).fill(false));
+    const [seats_n, setSeats_n] = useState([]);
     const [seats_id, setSeats_id] = useState([]);
     const [name_user, setName_user] = useState("");
 	const [cpf, setCpf] = useState("");
@@ -50,38 +51,35 @@ export default function Screen2({setRequest_info}) {
     }, []);
 
 
-    function select_seat(seat_n,index){
+    function select_seat(seat_n,seat_id,index){
         seat_selected_copy=[...seat_selected];
         seat_selected_copy[index]=!seat_selected_copy[index];
         setSeat_selected(seat_selected_copy);
-        if (seats_id.includes(seat_n)){
+        if (seats_n.includes(seat_n)){
+            setSeats_n(seats_n.filter((value,_) => value !== seat_n))
             setSeats_id(seats_id.filter((value,_) => value !== seat_n))
         }
         else{
-            setSeats_id([...seats_id, seat_n])
+            setSeats_n([...seats_n, seat_n])
+            setSeats_id([...seats_id, seat_id])
         }
     }
 
     function send_request () {
         setRequest_info({
-            seats_id:seats_id,
+            seats_n:seats_n,
             name_user:name_user,
             cpf:cpf,
             movie:all_data.movie.title,
             day:all_data.day.date,
             hour:all_data.name,
         })
-        // console.log(setRequest_info)
 
         const response = axios.post("https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many", {
 			ids: seats_id.map( (str) =>(Number(str)) ),
             name: name_user,
             cpf: cpf
-    });
-        console.log(seats_id)
-        console.log(name_user)
-        console.log(cpf)
-        // promise.then(wite_request)
+    }); 
     }
 
     return(
@@ -96,6 +94,7 @@ export default function Screen2({setRequest_info}) {
                     isAvailable={value.isAvailable}
                     isSelected={seat_selected[index]}
                     seat_n={value.name}
+                    seat_id={value.id}
                     select_seat={select_seat}
                     index={index}
                     />
