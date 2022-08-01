@@ -121,8 +121,8 @@ export default function Screen2({setRequest_info}) {
                     <input type="text" placeholder="Digite seu CPF..." id="campoCpf" value={cpf} onChange={e => setCpf(e.target.value)} 
                     data-inputmask="'mask': '9', 'repeat': 10, 'greedy' : false" required/>
                     <Link to={success_link}>
-                        <button type="submit" className='button_2_3' onClick={() => send_request()}>
-                            Reservar assento(s)</button>
+                        <div type="submit" className='button_2_3' onClick={() => send_request()}>
+                            Reservar assento(s)</div>
                     </Link>
                 </form>
 
