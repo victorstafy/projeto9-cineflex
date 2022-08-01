@@ -21,9 +21,11 @@
   --cor-selecionado-borda: #1AAE9E;
   --cor-disponivel-borda: #7B8B99;
   --cor-indisponivel-borda: #F7C52B;
+  --cor-input-letra:#AFAFAF;
 }
 
 body {
+  position: relative;
   width: 375px;
   height: 877px;
   justify-content: center;
@@ -147,6 +149,8 @@ body {
 }
 
 .footer{
+  position:absolute;
+  bottom:0px;
   display:flex;
   align-items: center;
   justify-content: left;
@@ -172,8 +176,11 @@ body {
   font-size: 26px;
   line-height: 30px;
   display: flex;
+  text-align: left;
+  flex-direction: column;
   align-items: center;
   margin-left: 14px;
+  margin-top: 25px;
 }
 
 .footer_img_back{
@@ -194,6 +201,42 @@ body {
   justify-content: center;
   flex-direction: column;
   padding: 0px 24px 0px 24px;
+
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.content_screen_2 input{
+  width:327px;
+  height:51px;
+  margin-top: 7px;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cor-input-letra);
+}
+
+.content_screen_2 label{
+  width:327px;
+  text-align: left;
+  margin-top: 7px;
+}
+
+.content_screen_2 a{
+  text-decoration: none;
+}
+
+.content_screen_2 form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 35px;
 }
 
 .button_2_3{
@@ -202,12 +245,15 @@ body {
   font-weight: 400;
   font-size: 18px;
   line-height: 21px;
+  border-radius: 3px;
   display: flex;
   align-items: center;
   text-align: center;
+  justify-content: center;
   letter-spacing: 0.04em;
   color: var(--cor-letra-subtitulos-botao);
   margin-top: 60px;
+  background: var(--cor-botoes);
 }
 
 .seats{

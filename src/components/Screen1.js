@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Footer from './Footer';
 
+// let movie_info;
 
 function Section({ weekday,date,showtimes ,setSessao_id}) {
     return (
@@ -50,6 +51,12 @@ export default function Screen1({setSessao_id}) {
             setSection_info(res.data)
         });
       }, []);
+
+    // movie_info={posterURL:section_info.posterURL,
+    //             posterURL:section_info.title,
+    //             posterURL:section_info.posterURL,
+    //             posterURL:section_info.posterURL,
+    // }
 
     return(
         <>

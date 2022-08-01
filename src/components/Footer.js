@@ -7,7 +7,7 @@ export default function Footer({img_url,movie_title,movie_time}){
             <img src={img_url}/>
         </div>
         <div className="footer_title">
-            {movie_title}
+            {movie_title}<br></br>
             {movie_time}
         </div>
     </div>
