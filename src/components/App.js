@@ -22,14 +22,11 @@ export default function App () {
             <BrowserRouter>
                 <Navbar/>
                 <Routes>
-                    <Route path="/" element={<Screen0 screen={screen} setScreen={setScreen} 
-                    movie_id={movie_id} setMovie_id={setMovie_id} api_root_adress={api_root_adress}/>}></Route>
+                    <Route path="/" element={<Screen0 setMovie_id={setMovie_id} />}></Route>
 
-                    <Route path="/sessoes:filmeId" element={<Screen1 screen={screen} setScreen={setScreen} 
-                    movie_id={movie_id} setMovie_id={setMovie_id}  sessao_id={sessao_id} 
-                    setSessao_id={setSessao_id} api_movie_adress={api_movie_adress}/>}></Route>
+                    <Route path="/sessoes/:movie_id" element={<Screen1 setSessao_id={setSessao_id} />}></Route>
 
-                    <Route path="/assentos:sessaoId" element={<Screen2 screen={screen} setScreen={setScreen} 
+                    <Route path="/assentos/:sessao_id" element={<Screen2 screen={screen} setScreen={setScreen} 
                     movie_id={movie_id} setMovie_id={setMovie_id}  sessao_id={sessao_id} 
                     setSessao_id={setSessao_id} api_section_adress={api_section_adress}/>}></Route>
 

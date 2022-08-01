@@ -1,35 +1,46 @@
 import { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom'
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-export default function Screen0({screen,setScreen,movie_id,setMovie_id,api_root_adress}) {
+function Image({ url, name, id, setMovie_id }) {
+    return (
+      <div className="content_screen_0_cont">
+        <Link to={`/sessoes/${id}`}>
+          <img src={url} onClick={() => setMovie_id(id)}/>
+        </Link>
+      </div>
+    );
+  }
 
-    // useEffect(() => {
-    //     const promise = axios.get(
-    //       {api_root_adress}
-    //     );
+export default function Screen0({setMovie_id}) {
+
+    const [images, setImages] = useState([]);
+    useEffect(() => {
+        const promise = axios.get(  
+        'https://mock-api.driven.com.br/api/v7/cineflex/movies'
+        );
     
-    //     promise.then((res) => {
-    //       setImage(res.data);
-    //     });
-    //   }, []);
+        promise.then((res) => {
+            setImages(res.data);
+        });
+      }, []);
 
 
     return(
-        
         <>
             <div className="top_title">
                 Selecione o Filme
             </div>
             <div className="content_screen_0">
-                Iniciar Recall!
+                {images.map((value) => (
+                <Image
+                    url={value.posterURL}
+                    name={value.title}
+                    id={value.id}
+                    setMovie_id={setMovie_id}
+                />
+                ))}
             </div>
         </>
-
-        // <Link to="/add-image" onClick={() => setClicked(!clicked)}>
-        // <AddButton clicked={clicked}>+</AddButton>
-        // </Link>
-
     )
 }
