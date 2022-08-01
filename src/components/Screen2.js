@@ -27,6 +27,7 @@ export default function Screen2({seats_id,setSeats_id}) {
     const [seat_selected, setSeat_selected] = useState(Array(100).fill(false));
     const [name_user, setName_user] = useState("");
 	const [cpf, setCpf] = useState("");
+    const [isDisplayed, setIsDisplayed] = useState(false);
     const { section_id } = useParams();
     let seat_selected_copy;
     const success_link="/sucesso"
@@ -41,6 +42,12 @@ export default function Screen2({seats_id,setSeats_id}) {
             setSeats_data(res.data.seats)
         });
       }, []);
+
+    useEffect(() => {
+    setInterval(() => {
+        setIsDisplayed(true);
+    }, 500);
+    }, []);
 
 
     function select_seat(seat_n,index){
@@ -62,7 +69,7 @@ export default function Screen2({seats_id,setSeats_id}) {
 		alert(seats_id)
         alert(name_user)
         alert(cpf)
-        const requisicao = axios.post("https://minha-api.com/login", {
+        const requisicao = axios.post("https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many", {
 			ids: seats_id.map( (str) =>(Number(str)) ),
             name: name_user,
             cpf: cpf
@@ -110,11 +117,18 @@ export default function Screen2({seats_id,setSeats_id}) {
                             Reservar assento(s)</button>
                     </Link>
                 </form>
-                <Footer
+                {/* <Footer
                     img_url={''}
                     movie_title={''}
                     movie_time={''}
-                />
+                /> */}
+
+                {isDisplayed &&
+                    <Footer
+                        img_url={all_data.movie.posterURL}
+                        movie_title={all_data.movie.title}
+                        movie_time={all_data.day.weekday+'-'+all_data.name}
+                    />}
                 {/* <Footer
                 img_url={all_data.movie.posterURL}
                 movie_title={all_data.movie.title}
