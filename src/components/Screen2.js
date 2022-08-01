@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Footer from './Footer';
-import movie_info from './Screen1';
 
 function Seat({isAvailable,isSelected,seat_n,select_seat,index}){
     return (
@@ -20,7 +19,7 @@ function Seat({isAvailable,isSelected,seat_n,select_seat,index}){
     )
 }
 
-export default function Screen2({seats_id,setSeats_id}) {
+export default function Screen2({seats_id,setSeats_id,setRequest_info}) {
 
     const [all_data, setAll_data] = useState([]);
     const [seats_data, setSeats_data] = useState([]);
@@ -51,24 +50,28 @@ export default function Screen2({seats_id,setSeats_id}) {
 
 
     function select_seat(seat_n,index){
-        console.log(index)
         seat_selected_copy=[...seat_selected];
         seat_selected_copy[index]=!seat_selected_copy[index];
         setSeat_selected(seat_selected_copy);
-        console.log(seat_selected)
         if (seats_id.includes(seat_n)){
             setSeats_id(seats_id.filter((value,_) => value !== seat_n))
         }
         else{
             setSeats_id([...seats_id, seat_n])
         }
-        console.log(seats_id)
     }
 
     function send_request () {
-		alert(seats_id)
-        alert(name_user)
-        alert(cpf)
+        setRequest_info({
+            seats_id:seats_id,
+            name_user:name_user,
+            cpf:cpf,
+            movie:all_data.movie.title,
+            day:all_data.day.date,
+            hour:all_data.name,
+        })
+        // console.log(setRequest_info)
+
         const requisicao = axios.post("https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many", {
 			ids: seats_id.map( (str) =>(Number(str)) ),
             name: name_user,
@@ -111,17 +114,13 @@ export default function Screen2({seats_id,setSeats_id}) {
                     <label for="campoNome">Nome do comprador:</label>
                     <input type="text" placeholder="Digite seu nome..." id="campoNome" value={name_user} onChange={e => setName_user(e.target.value)} required/>
                     <label for="campoCpf">CPF do comprador:</label>
-                    <input type="number" placeholder="Digite seu CPF..." id="campoCpf" value={cpf} onChange={e => setCpf(e.target.value)} required/>
+                    <input type="text" placeholder="Digite seu CPF..." id="campoCpf" value={cpf} onChange={e => setCpf(e.target.value)} 
+                    data-inputmask="'mask': '9', 'repeat': 10, 'greedy' : false" required/>
                     <Link to={success_link}>
                         <button type="submit" className='button_2_3' onClick={() => send_request()}>
                             Reservar assento(s)</button>
                     </Link>
                 </form>
-                {/* <Footer
-                    img_url={''}
-                    movie_title={''}
-                    movie_time={''}
-                /> */}
 
                 {isDisplayed &&
                     <Footer
@@ -129,11 +128,6 @@ export default function Screen2({seats_id,setSeats_id}) {
                         movie_title={all_data.movie.title}
                         movie_time={all_data.day.weekday+'-'+all_data.name}
                     />}
-                {/* <Footer
-                img_url={all_data.movie.posterURL}
-                movie_title={all_data.movie.title}
-                movie_time={all_data.day.weekday+'-'+all_data.name}
-                /> */}
             </div>   
         </>
     )
