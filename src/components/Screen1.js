@@ -6,7 +6,7 @@ import Footer from './Footer';
 
 // let movie_info;
 
-function Section({ weekday,date,showtimes ,setSessao_id}) {
+function Section({ weekday,date,showtimes}) {
     return (
       <div className="buttons_template">
         <div className="button_1_title">
@@ -16,18 +16,16 @@ function Section({ weekday,date,showtimes ,setSessao_id}) {
             <Button 
             hour={value.name}
             page_link={`/assentos/${value.id}`}
-            section_id={value.id}
-            setSessao_id={setSessao_id}
             />))}
       </div>
     );
 }
 
-function Button({ hour, page_link, section_id, setSessao_id}) {
+function Button({ hour, page_link}) {
     return (
         <>
         <Link to={page_link}>
-            <div className="button_1" onClick={() => setSessao_id(section_id)}>
+            <div className="button_1"> 
                 {hour}
             </div>
         </Link>
@@ -35,7 +33,7 @@ function Button({ hour, page_link, section_id, setSessao_id}) {
     );
 }
 
-export default function Screen1({setSessao_id}) {
+export default function Screen1() {
 
     const [section_days_info, setSection_days_info] = useState([]);
     const [section_info, setSection_info] = useState([]);
@@ -52,12 +50,6 @@ export default function Screen1({setSessao_id}) {
         });
       }, []);
 
-    // movie_info={posterURL:section_info.posterURL,
-    //             posterURL:section_info.title,
-    //             posterURL:section_info.posterURL,
-    //             posterURL:section_info.posterURL,
-    // }
-
     return(
         <>
             <div className="top_title">
@@ -69,7 +61,6 @@ export default function Screen1({setSessao_id}) {
                     weekday={value.weekday}
                     date={value.date}
                     showtimes={value.showtimes}
-                    setSessao_id={setSessao_id}
                     />
                 ))}
             </div>

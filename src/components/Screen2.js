@@ -19,11 +19,12 @@ function Seat({isAvailable,isSelected,seat_n,select_seat,index}){
     )
 }
 
-export default function Screen2({seats_id,setSeats_id,setRequest_info}) {
+export default function Screen2({setRequest_info}) {
 
     const [all_data, setAll_data] = useState([]);
     const [seats_data, setSeats_data] = useState([]);
     const [seat_selected, setSeat_selected] = useState(Array(100).fill(false));
+    const [seats_id, setSeats_id] = useState([]);
     const [name_user, setName_user] = useState("");
 	const [cpf, setCpf] = useState("");
     const [isDisplayed, setIsDisplayed] = useState(false);
@@ -43,7 +44,7 @@ export default function Screen2({seats_id,setSeats_id,setRequest_info}) {
       }, []);
 
     useEffect(() => {
-    setInterval(() => {
+    setTimeout(() => {
         setIsDisplayed(true);
     }, 500);
     }, []);
@@ -72,11 +73,15 @@ export default function Screen2({seats_id,setSeats_id,setRequest_info}) {
         })
         // console.log(setRequest_info)
 
-        const requisicao = axios.post("https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many", {
+        const response = axios.post("https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many", {
 			ids: seats_id.map( (str) =>(Number(str)) ),
             name: name_user,
             cpf: cpf
     });
+        console.log(seats_id)
+        console.log(name_user)
+        console.log(cpf)
+        // promise.then(wite_request)
     }
 
     return(

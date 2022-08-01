@@ -1,6 +1,5 @@
 
 export default function Footer({img_url,movie_title,movie_time}){
-    console.log(img_url)
     return (
     <div className="footer">
         <div className="footer_img_back">

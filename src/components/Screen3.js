@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import {Link} from 'react-router-dom'
 
-export default function Screen3({request_info}) {
+export default function Screen3({request_info,setRequest_info}) {
 
     let selected_seats=[...request_info.seats_id];
     console.log(selected_seats)
@@ -44,7 +44,7 @@ export default function Screen3({request_info}) {
                 </div>
 
                 <Link to={'/'}>
-                <div className='button_2_3'>
+                <div className='button_2_3' onClick={() => (request_info={})}>
                     Voltar para Home</div>
                 </Link>
             </div>
